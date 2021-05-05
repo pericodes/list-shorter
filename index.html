@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <title>↪Sort List Online↩🔀</title>
+        <meta name="description" content="Sort a list. Chose your separator (breaklines, middle dash, semicolon), the order (alphabetically, naturally, randomly), the direction" />
+    </head>
+    <body class="container">
+        <header>
+            <h1>Sort List Online</h1>
+        </header>
+        <main>
+            <div class="input-group flex-nowrap">
+                <textarea class="form-control" id="text-input" rows="5" onkeyup=sort() placeholder="Tap here your list"></textarea>
+                <button type="button" class="btn btn-warning" onclick="reset()" style="border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em; ">Reset</button>
+            </div>
+            <section class="mt-2">
+                <div class="form-check form-check-inline">
+                    <label>Input Separator:</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="input-separator" id="input-separator1" value="breakLine" checked onchange="sort()">
+                    <label class="form-check-label" for="input-separator1">Break Lines</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="input-separator" id="input-separator2"  value="," onchange="sort()">
+                    <label class="form-check-label" for="input-separator2">Comma ","</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="input-separator" id="input-separator3"  value=";" onchange="sort()">
+                    <label class="form-check-label" for="input-separator3">Semicolon ";"</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="input-separator" id="input-separator4"  value=" " onchange="sort()">
+                    <label class="form-check-label" for="input-input-separator4">Space " "</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="input-separator" id="input-separator5"  value="tab" onchange="sort()">
+                    <label class="form-check-label" for="input-separator5">Tab</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="input-separator" id="input-separator6"  value="-" onchange="sort()">
+                    <label class="form-check-label" for="input-separator6">Middle dash (-)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="input-separator" id="custom-input-separator"  value="custom" onkeyup="sort()">
+                    <label class="form-check-label" for="custom-input-separator">Custom:</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-control" type="text" name="input-separator" id="custom-input-separator-value"  >
+                </div>
+            </section>
+            <section class="mt-2">
+                <div class="form-check form-check-inline">
+                    <label>Output Separator:</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="output-separator" id="output-separator1" value="breakLine" checked onchange="sort()">
+                    <label class="form-check-label" for="output-separator1">Break Lines</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="output-separator" id="output-separator2"  value="," onchange="sort()">
+                    <label class="form-check-label" for="output-separator2">Comma ","</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="output-separator" id="output-separator3"  value=";" onchange="sort()">
+                    <label class="form-check-label" for="output-separator3">Semicolon ";"</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="output-separator" id="output-separator4"  value=" " onchange="sort()">
+                    <label class="form-check-label" for="input-output-separator4">Space " "</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="output-separator" id="output-separator5"  value=" " onchange="sort()">
+                    <label class="form-check-label" for="output-separator5">Tab</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="output-separator" id="input-separator5"  value="-" onchange="sort()">
+                    <label class="form-check-label" for="output-separator6">Middle dash (-)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="output-separator" id="custom-output-separator"  value="custom" onchange="sort()">
+                    <label class="form-check-label" for="custom-output-separator">Custom:</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-control" type="text"  id="custom-output-separator-value"  onkeyup="sort()" >
+                </div>
+            </section>
+            <section class="mt-2">
+                <div class="form-check form-check-inline">
+                    <label>Order:</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="order" id="alphabetically-order" value="alphabetically " checked onchange="sort()">
+                    <label class="form-check-label" for="alphabetically-order">Alphabetically order</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="order" id="numeric-order"  value="numeric" onchange="sort()">
+                    <label class="form-check-label" for="numeric-order">Numeric</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="order" id="random-order"  value="random" onchange="sort()">
+                    <label class="form-check-label" for="random-order">Random</label>
+                </div>
+            </section>
+            <section class="mt-2">
+                <div class="form-check form-check-inline">
+                    <label>Other Options:</label>
+                </div>
+                <div class="form-check form-check-inline form-switch ml-2">
+                    <input class="form-check-input" type="checkbox" name="case" id="case-sensitive" checked onchange="sort()">
+                    <label class="form-check-label" for="case-sensitive">Case sensitive</label>
+                </div>
+                <div class="form-check form-check-inline form-switch ml-2">
+                    <input class="form-check-input" type="checkbox" name="invert-sort" id="invert-sort" onchange="sort()">
+                    <label class="form-check-label" for="invert-sort">Invert Sort</label>
+                </div>
+                <div class="form-check form-check-inline form-switch ml-2">
+                    <input class="form-check-input" type="checkbox" name="invert-sort" id="remove-duplicates" checked onchange="sort()" onchange="sort()">
+                    <label class="form-check-label" for="remove-duplicates">Remove Duplicates</label>
+                </div>
+                <div class="form-check form-check-inline form-switch ml-2">
+                    <input class="form-check-input" type="checkbox" name="invert-sort" id="remove-empty" checked onchange="sort()" onchange="sort()" checked>
+                    <label class="form-check-label" for="remove-duplicates">Remove Empty</label>
+                </div>
+            </section>
+            <div class="d-flex">
+                <button type="button" class="btn btn-success mt-3" style="width: 100%;" onclick="sort()">Sort</button>
+                
+            </div>
+            <div class="input-group flex-nowrap mt-3">
+                <textarea class="form-control" id="text-output" rows="5" onkeyup=sort() placeholder="Here will appear the list sorted" readonly></textarea>
+                <button type="button" class="btn btn-success" onclick="copy()" style="border-top-right-radius: 0.25em; border-bottom-right-radius: 0.25em; ">Copy</button>
+            </div>
+        </main>
+
+    </body>
+
+    <script>
+
+
+        function sort() {
+            let inputSeparator = null; 
+            document.querySelectorAll('[name=input-separator]').forEach(radio => {
+                if(radio.checked){
+                    inputSeparator = radio.value; 
+                }
+            });
+            if(inputSeparator === "custom"){
+                inputSeparator = document.getElementById("custom-input-separator-value").value;
+            }else if(inputSeparator == "breakLine"){
+                inputSeparator = "\n";
+            }
+
+            let outputSeparator = null; 
+            document.querySelectorAll('[name=output-separator]').forEach(radio =>{
+                if(radio.checked){
+                    outputSeparator = radio.value; 
+                }
+            });
+            if(outputSeparator === "custom"){
+                outputSeparator = document.getElementById("custom-output-separator-value").value;
+            }else if(outputSeparator == "breakLine"){
+                outputSeparator = "\n";
+            }
+
+
+            let arr = document.getElementById('text-input').value.split(inputSeparator);
+
+            let order = null; 
+            document.querySelectorAll('[name=order]').forEach(radio =>{
+                if(radio.checked){
+                    order = radio.value; 
+                }
+            });
+
+            if(order == 'numeric'){
+                arr.sort(function(a, b) {return !Number.isNaN(a) && !Number.isNaN(a) ? a - b: a.localeCompare(b);});
+            }else if(order == 'random'){
+                arr.sort(() => Math.random() - 0.5);
+            }else if(!document.getElementById('case-sensitive').checked){
+                arr.sort(function (a, b) {
+                    return a.toLowerCase().localeCompare(b.toLowerCase());
+                });
+            }else{
+                arr.sort();
+            }
+
+            if(document.getElementById('invert-sort').checked){
+                arr.reverse(); 
+            }
+
+            if(document.getElementById('remove-duplicates').checked){
+                arr = [... new Set(arr)];
+            }
+
+            if(document.getElementById('remove-empty').checked){
+                arr = arr.filter(function (el) {
+                    return el != "";
+                });
+            }
+
+            document.getElementById('text-output').value = arr.join(outputSeparator);
+
+            console.log(inputSeparator, outputSeparator);
+        }
+        function copy() {
+            document.getElementById('text-output').select();
+            document.execCommand("copy");
+        }
+        function reset() {
+            document.getElementById('text-input').value = "";
+            document.getElementById('text-output').value = "";
+        }
+    </script>
+</html>
